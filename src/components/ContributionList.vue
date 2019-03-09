@@ -11,7 +11,8 @@
           {{title}}
         </div>
         <div class="d-flex flex-wrap mt-2">
-          <div v-for="(item, index) in items" :key="index" class="d-flex flex-column mb-3" :class="item.style" style="width: 160px">
+          <div v-for="(item, index) in items" :key="index" class="d-flex flex-column mb-3"
+            :class="item.style" style="width: 160px" @click="onClicked(index)">
             <img :src="item.img" class="" style="height:120px">
             <div class="d-inline-flex mt-2" style="height:30px">
               <p class="mr-auto"  style="font-size:18px">{{item.name}}</p>
@@ -51,6 +52,11 @@ export default {
     afterNum: {
       type: String,
       default: '人已随喜'
+    }
+  },
+  methods: {
+    onClicked (index) {
+      this.$emit('selected', index)
     }
   }
 }

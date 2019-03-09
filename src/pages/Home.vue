@@ -67,5 +67,4 @@ export default {
 </script>
 
 <style>
-.banner { width: 1242px; height: auto; margin: 0 auto;}
 </style>

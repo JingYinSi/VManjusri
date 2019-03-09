@@ -1,12 +1,12 @@
 <template>
-  <contributions v-bind="props"/>
+  <contribution-list v-bind="props" @selected="onSelected"/>
 </template>
 
 <script>
-import Contributions from '../components/Contributions'
+import ContributionList from '../components/ContributionList'
 export default {
   components: {
-    Contributions
+    ContributionList
   },
   data () {
     return {
@@ -52,6 +52,12 @@ export default {
           }
         ]
       }
+    }
+  },
+  methods: {
+    onSelected (index) {
+      this.$router.push({name: 'contributions', params: {obj: 'lamp', id: index}})
+      // console.log(JSON.stringify(this.props.items[index], null, 2))
     }
   }
 }

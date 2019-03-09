@@ -4,7 +4,7 @@ import 'babel-polyfill'
 import 'bootstrap/dist/css/bootstrap.css'
 import VueFetch from './plugins/fetch'
 import './finelets/components/global-components'
-import Home from './pages/Home.vue'
+import Main from './pages/Main.vue'
 import router from './router'
 import * as filters from './filters'
 import store from './store'
@@ -25,7 +25,7 @@ Vue.use(VueFetch, {
 
 async function main () {
   new Vue({
-    ...Home,
+    ...Main,
     router,
     store
   }).$mount('#app')
