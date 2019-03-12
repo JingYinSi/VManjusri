@@ -16,7 +16,7 @@
     </div>
     <div class="nav bg-white nav-pills fixed-bottom nav-fill py-2">
       <li v-for="(item, index) in menu"  :key="index" class="nav-item" :class="item.class">
-          <router-link :to="item.to"  style="color:darkgrey;font-size:20px" :style="menuItemStyle(item.to)">
+          <router-link :to="{name: item.to}"  style="color:darkgrey;font-size:20px" :style="menuItemStyle(item.to)">
             {{item.name}}
           </router-link>
       </li>

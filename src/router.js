@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 function __beforeEach (to, from, next) {
+  // console.log(JSON.stringify(to, null, 2))
   next()
 }
 
