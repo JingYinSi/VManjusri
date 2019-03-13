@@ -3,6 +3,7 @@ import Lamps from '../pages/Lamps.vue'
 import Monks from '../pages/Monks.vue'
 import Lamping from '../pages/Lamping.vue'
 import ForMonks from '../pages/ForMonks.vue'
+import Confirm from '../pages/Confirm.vue'
 import NotFound from '../components/NotFound.vue'
 
 const homeRoutes = [{
@@ -14,10 +15,6 @@ const homeRoutes = [{
   path: 'monks',
   name: 'monks',
   component: Monks
-},
-{
-  path: '*',
-  component: NotFound
 }
 ]
 
@@ -28,6 +25,11 @@ const routes = [
     children: homeRoutes
   },
   {
+    path: '/payfor/:obj/:id',
+    name: 'payfor',
+    component: Confirm
+  },
+  {
     path: '/lamps/:obj/:id',
     name: 'lamping',
     component: Lamping
@@ -36,6 +38,14 @@ const routes = [
     path: '/monks/:obj/:id',
     name: 'forMonks',
     component: ForMonks
+  },
+  {
+    path: '/',
+    name: 'home'
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 export default routes

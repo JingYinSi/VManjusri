@@ -16,7 +16,7 @@
       {{item.desc}}
     </div>
     <div class="d-flex">
-      <button type="button" class="btn btn-danger btn-lg mx-auto" style="width:85%">{{title}}</button>
+      <button type="button" class="btn btn-danger btn-lg mx-auto" style="width:85%" @click="toConfirmPage">{{title}}</button>
     </div>
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
     }
   },
   methods: {
+    toConfirmPage () {
+      this.$router.push({name: 'payfor', params: this.$route.params})
+    }
   }
 }
 </script>
