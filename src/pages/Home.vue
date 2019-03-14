@@ -1,42 +1,32 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <img class="w-100" style="height:180px" src="/static/img/img_banner_dz.jpg"/>
-      <div style="top:120px;left:10px;z-index:1;position:absolute;">
-        <div class="d-inline-flex align-items-center">
-          <img src="/static/img/logo1.png" style="height:90px"/>
-          <h5 class="text-white ml-2">静音寺文殊禅林</h5>
-        </div>
-      </div>
-    </div>
+    <main-head v-bind="head"></main-head>
     <div class="row">
       <div class="col">
         <router-view />
       </div>
     </div>
-    <div class="nav bg-white nav-pills fixed-bottom nav-fill py-2">
-      <li v-for="(item, index) in menu"  :key="index" class="nav-item" :class="item.class">
-          <router-link :to="{name: item.to}"  style="color:darkgrey;font-size:20px" :style="menuItemStyle(item.to)">
-            {{item.name}}
-          </router-link>
-      </li>
-    </div>
+    <foot-menu :menu="foot"/>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import MainHead from '../components/MainHead'
+import FootMenu from '../components/FootMenu'
 export default {
   components: {
-  },
-  data () {
-    return {
-      page: 0
-    }
+    MainHead,
+    FootMenu
   },
   computed: {
-    ...mapGetters(['route']),
-    menu () {
+    head () {
+      return {
+        banner: '/static/img/img_banner_dz.jpg',
+        logo: '/static/img/logo1.png',
+        header: '静音寺文殊禅林'
+      }
+    },
+    foot () {
       return [
         {
           to: 'lamps',
@@ -56,15 +46,6 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    ...mapActions([]),
-    menuItemStyle (name) {
-      return name === this.route.name ? 'color:orange' : ''
-    }
   }
 }
 </script>
-
-<style>
-</style>
