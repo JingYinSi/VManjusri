@@ -2,11 +2,11 @@
   <div class="mx-auto" style="width:85%">
     <div class="form-group mt-3">
       <label>姓名</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" v-model="name">
     </div>
     <div class="form-group mt-3">
       <label>回向</label>
-      <textarea  rows="5" class="form-control rounded-0"/>
+      <textarea  rows="5" class="form-control rounded-0" v-model="hope"/>
     </div>
     <div class="d-flex align-items-start mt-5">
         <img class="mr-3" height="110px" width="110px" :src="item.img"/>
@@ -21,7 +21,8 @@
         </div>
     </div>
     <div class="d-flex fixed-bottom my-4">
-      <button type="button" class="btn btn-danger btn-lg mx-auto" style="width:85%">确认付款￥{{item.price}}元</button>
+      <button type="button" class="btn btn-danger btn-lg mx-auto"
+              style="width:85%" @click="pay">确认付款￥{{item.price}}元</button>
     </div>
   </div>
 </template>
@@ -33,7 +34,8 @@ export default {
   },
   data () {
     return {
-      page: 0
+      name: null,
+      hope: null
     }
   },
   computed: {
@@ -45,9 +47,10 @@ export default {
     }
   },
   methods: {
+    pay () {
+      alert(JSON.stringify({name: this.name, hope: this.hope, amount: this.item.price}, null, 2))
+      this.$router.go(-1)
+    }
   }
 }
 </script>
-
-<style>
-</style>

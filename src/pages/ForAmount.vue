@@ -96,85 +96,26 @@
 
 <script>
 import itemsList from '../helpers/MonkItems.js'
-const flowData = [
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称',
-    amount: 50,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称1',
-    amount: 100,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称2',
-    amount: 200,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称3',
-    amount: 300,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称4',
-    amount: 400,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称4',
-    amount: 500,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称4',
-    amount: 600,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称4',
-    amount: 700,
-    when: new Date()
-  },
-  {
-    img: '/static/img/clx.jpg',
-    nick: '微信昵称5',
-    amount: 800,
-    when: new Date()
-  }
-]
+import suixiList from '../helpers/SuixiList.js'
+
 const __predefinedAmounts = [20, 50, 100]
 export default {
   data () {
     return {
       anyAmount: null,
-      amount: 20,
-      flows: flowData
+      amount: 20
     }
   },
   computed: {
+    flows () {
+      let {type, id} = this.$route.params
+      return suixiList(type, id)
+    },
     suixi () {
       return this.anyAmount > 0 ? this.anyAmount : this.amount
     },
     predefinedAmounts () {
       return __predefinedAmounts
-    },
-    progress () {
-      const item = itemsList.items[this.$route.params.id]
-      const prog = item.target > 0 && item.amount >= 0 ? 'width:' + item.amount * 100 / item.target + '%' : ''
-      return prog
-    },
-    title () {
-      return itemsList.title
     },
     item () {
       const item = itemsList.items[this.$route.params.id]
