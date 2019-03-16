@@ -1,6 +1,7 @@
 import __ from 'underscore'
 
 const remote = {
+  type: 'lamping',
   summary: '供灯之功德总述',
   title: '供灯祈福',
   items: [{

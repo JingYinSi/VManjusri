@@ -1,8 +1,8 @@
 import Home from '../pages/Home.vue'
 import Lamps from '../pages/Lamps.vue'
 import Monks from '../pages/Monks.vue'
-import Lamping from '../pages/Lamping.vue'
-import ForMonks from '../pages/ForMonks.vue'
+import ForPrice from '../pages/ForPrice.vue'
+import ForAmount from '../pages/ForAmount.vue'
 import Confirm from '../pages/Confirm.vue'
 import NotFound from '../components/NotFound.vue'
 
@@ -25,19 +25,19 @@ const routes = [
     children: homeRoutes
   },
   {
-    path: '/payfor/:obj/:id',
+    path: '/payfor/:type/:id',
     name: 'payfor',
     component: Confirm
   },
   {
-    path: '/lamping/:id',
-    name: 'lamping',
-    component: Lamping
+    path: '/suixi/forprice/:type/:id',
+    name: 'forprice',
+    component: ForPrice
   },
   {
-    path: '/monks/:obj/:id',
-    name: 'forMonks',
-    component: ForMonks
+    path: '/suixi/foramount/:/type/:id',
+    name: 'foramount',
+    component: ForAmount
   },
   {
     path: '/',

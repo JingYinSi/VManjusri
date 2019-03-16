@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto" style="width:85%">
     <div class="form-group mt-3">
-      <label>供灯人姓名</label>
+      <label>姓名</label>
       <input type="text" class="form-control">
     </div>
     <div class="form-group mt-3">
@@ -27,9 +27,7 @@
 </template>
 
 <script>
-import lampItems from '../helpers/LampItems.js'
-import monkItems from '../helpers/MonkItems.js'
-const types = {lamp: lampItems, monk: monkItems}
+import onlines from '../helpers/Onlines.js'
 export default {
   components: {
   },
@@ -40,10 +38,10 @@ export default {
   },
   computed: {
     title () {
-      return types[this.$route.params.obj].title
+      return onlines[this.$route.params.type].title
     },
     item () {
-      return types[this.$route.params.obj].items[this.$route.params.id]
+      return onlines[this.$route.params.type].items[this.$route.params.id]
     }
   },
   methods: {

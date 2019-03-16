@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto" style="width:90%">
-    <img class="w-100" style="height:180px" src="/static/img/lamps.jpg"/>
+    <img class="w-100" style="height:180px" :src="item.img"/>
     <div class="d-flex mt-4">
       <p class="mr-auto" style="font-size:20px;font-weight:600">{{item.name}}</p>
       <p class="" style="font-size:20px;font-weight:600">￥{{item.price}}</p>
@@ -16,36 +16,25 @@
       {{item.desc}}
     </div>
     <div class="d-flex">
-      <button type="button" class="btn btn-danger btn-lg mx-auto" style="width:85%" @click="toConfirmPage">{{title}}</button>
+      <button type="button" class="btn btn-danger btn-lg mx-auto" style="width:85%"
+              @click="toConfirmPage">{{item.title}}</button>
     </div>
   </div>
 </template>
 
 <script>
-import itemsList from '../helpers/LampItems.js'
+import onlines from '../helpers/Onlines.js'
 export default {
-  components: {
-  },
-  data () {
-    return {
-      page: 0
-    }
-  },
   computed: {
-    title () {
-      return itemsList.title
-    },
     item () {
-      return {...itemsList.items[this.$route.params.id]}
+      const itemsList = onlines[this.$route.params.type]
+      return {title: itemsList.title, ...itemsList.items[this.$route.params.id]}
     }
   },
   methods: {
     toConfirmPage () {
-      this.$router.push({name: 'payfor', params: {obj: 'lamp', id: this.$route.params.id}})
+      this.$router.push({name: 'payfor', params: this.$route.params})
     }
   }
 }
 </script>
-
-<style>
-</style>

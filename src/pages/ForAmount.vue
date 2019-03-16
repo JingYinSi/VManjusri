@@ -8,7 +8,7 @@
       <p class="text-secondary" style="font-size:18px">{{item.desc}}</p>
     </div>
     <div class="progress" style="height: 10px;">
-      <div class="progress-bar bg-danger" :style="progress"></div>
+      <div class="progress-bar bg-danger" :style="item.progress"></div>
     </div>
     <div class="d-flex justify-content-between mt-3">
       <div class="d-flex flex-column">
@@ -95,10 +95,7 @@
 </template>
 
 <script>
-import lampItems from '../helpers/LampItems.js'
-import monkItems from '../helpers/MonkItems.js'
-import { setInterval } from 'timers'
-const types = {lamp: lampItems, monk: monkItems}
+import itemsList from '../helpers/MonkItems.js'
 const flowData = [
   {
     img: '/static/img/clx.jpg',
@@ -157,13 +154,10 @@ const flowData = [
 ]
 const __predefinedAmounts = [20, 50, 100]
 export default {
-  components: {
-  },
   data () {
     return {
       anyAmount: null,
       amount: 20,
-      from: 0,
       flows: flowData
     }
   },
@@ -175,19 +169,23 @@ export default {
       return __predefinedAmounts
     },
     progress () {
-      const item = types[this.$route.params.obj].items[this.$route.params.id]
+      const item = itemsList.items[this.$route.params.id]
       const prog = item.target > 0 && item.amount >= 0 ? 'width:' + item.amount * 100 / item.target + '%' : ''
       return prog
     },
     title () {
-      return types[this.$route.params.obj].title
+      return itemsList.title
     },
     item () {
-      return types[this.$route.params.obj].items[this.$route.params.id]
+      const item = itemsList.items[this.$route.params.id]
+      return {
+        title: itemsList.title,
+        progress: item.target > 0 && item.amount >= 0 ? 'width:' + item.amount * 100 / item.target + '%' : '',
+        ...item
+      }
     }
   },
   created () {
-    // this.startScroll()
   },
   methods: {
     amountStyle (amt) {
@@ -196,18 +194,6 @@ export default {
     setPredefinedAmount (amt) {
       this.anyAmount = null
       this.amount = amt
-    },
-    scrollToEnd () {
-      var container = this.$el.querySelector('#flow')
-      container.scrollTop = container.scrollHeight
-    },
-    startScroll () {
-      setInterval(() => {
-        ++this.from
-        if (this.from === flowData.length) this.from = 0
-        this.flows.push(flowData[this.from])
-        this.scrollToEnd()
-      }, 1000)
     }
   }
 }

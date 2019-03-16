@@ -9,10 +9,6 @@ export default {
   components: {
     ContributionList
   },
-  data () {
-    return {
-    }
-  },
   computed: {
     props () {
       const items = {
@@ -24,11 +20,10 @@ export default {
   },
   methods: {
     onSelected (index) {
-      this.$router.push({name: 'forMonks', params: {obj: 'monk', id: index}})
+      const item = monkItems.items[index]
+      const type = item.target > 0 ? 'foramount' : 'forprice'
+      this.$router.push({name: type, params: {type: monkItems.type, id: index}})
     }
   }
 }
 </script>
-
-<style>
-</style>

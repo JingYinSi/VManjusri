@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     onSelected (index) {
-      this.$router.push({name: 'lamping', params: {id: index}})
+      this.$router.push({name: 'forprice', params: {type: lampItems.type, id: index}})
     }
   }
 }
