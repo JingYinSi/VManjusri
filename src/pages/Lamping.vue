@@ -22,9 +22,7 @@
 </template>
 
 <script>
-import lampItems from '../helpers/LampItems.js'
-import monkItems from '../helpers/MonkItems.js'
-const types = {lamp: lampItems, monk: monkItems}
+import itemsList from '../helpers/LampItems.js'
 export default {
   components: {
   },
@@ -35,15 +33,15 @@ export default {
   },
   computed: {
     title () {
-      return types[this.$route.params.obj].title
+      return itemsList.title
     },
     item () {
-      return types[this.$route.params.obj].items[this.$route.params.id]
+      return {...itemsList.items[this.$route.params.id]}
     }
   },
   methods: {
     toConfirmPage () {
-      this.$router.push({name: 'payfor', params: this.$route.params})
+      this.$router.push({name: 'payfor', params: {obj: 'lamp', id: this.$route.params.id}})
     }
   }
 }

@@ -9,10 +9,6 @@ export default {
   components: {
     ContributionList
   },
-  data () {
-    return {
-    }
-  },
   computed: {
     props () {
       const items = {
@@ -25,7 +21,7 @@ export default {
   },
   methods: {
     onSelected (index) {
-      this.$router.push({name: 'lamping', params: {obj: 'lamp', id: index}})
+      this.$router.push({name: 'lamping', params: {id: index}})
     }
   }
 }

@@ -30,7 +30,7 @@ const routes = [
     component: Confirm
   },
   {
-    path: '/lamps/:obj/:id',
+    path: '/lamping/:id',
     name: 'lamping',
     component: Lamping
   },
