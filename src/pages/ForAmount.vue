@@ -35,7 +35,7 @@
       <p class="text-dark pl-2" style="border-left-style:solid;border-left-width:7px;
           border-left-color:red;font-size:20px;height:35px;font-weight:600">随喜人员流水</p>
     </div>
-    <div id="flow" class="my-custom-scrollbar">
+    <div class="my-custom-scrollbar">
       <div class="row" v-for="(item, index) in flows" :key="index">
         <div class="col-2">
           <img width="36" height="36" class="rounded-circle ml-3" :src="item.img"/>

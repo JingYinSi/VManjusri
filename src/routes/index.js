@@ -1,5 +1,6 @@
 import Home from '../pages/Home.vue'
 import Lamps from '../pages/Lamps.vue'
+import DailyVirtue from '../pages/DailyVirtue.vue'
 import Monks from '../pages/Monks.vue'
 import ForPrice from '../pages/ForPrice.vue'
 import ForAmount from '../pages/ForAmount.vue'
@@ -38,6 +39,11 @@ const routes = [
     path: '/suixi/foramount/:/type/:id',
     name: 'foramount',
     component: ForAmount
+  },
+  {
+    path: '/daily/virtue',
+    name: 'virtue',
+    component: DailyVirtue
   },
   {
     path: '/',
