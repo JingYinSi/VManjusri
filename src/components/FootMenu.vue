@@ -1,6 +1,6 @@
 <template>
   <div class="nav bg-white nav-pills fixed-bottom nav-fill py-2">
-    <li v-for="(item, index) in menu"  :key="index" class="nav-item">
+    <li v-for="(item, index) in menuItems"  :key="index" class="nav-item">
         <router-link :to="{name: item.to}"  style="color:darkgrey;font-size:20px" :style="menuItemStyle(item.to)">
           {{item.name}}
         </router-link>
@@ -10,14 +10,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import defaultMenu from '../helpers/MainMenus.js'
 export default {
   computed: {
-    ...mapGetters(['route'])
+    ...mapGetters(['route']),
+    menuItems () {
+      return this.menu || defaultMenu
+    }
   },
   props: {
     menu: {
-      type: Array,
-      required: true
+      type: Array
     }
   },
   methods: {

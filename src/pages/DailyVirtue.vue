@@ -96,12 +96,13 @@
         </div>
       </div>
     </div>
-    <foot-menu :menu="foot"/>
+    <foot-menu/>
   </div>
 </template>
 
 <script>
 import FootMenu from '../components/FootMenu'
+import virtueList from '../helpers/DailyVirtueList.js'
 export default {
   components: {
     FootMenu
@@ -113,99 +114,8 @@ export default {
     prices2 () {
       return [10, 88, 99]
     },
-    foot () {
-      return [
-        {
-          to: 'lamps',
-          name: '供灯'
-        },
-        {
-          to: 'monks',
-          name: '供僧'
-        },
-        {
-          to: 'virtue',
-          name: '随喜建寺'
-        },
-        {
-          to: 'me',
-          name: '我'
-        }
-      ]
-    },
     virtues () {
-      return [
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        },
-        {
-          month: 3,
-          day: 20,
-          name: 'foo',
-          city: 'nanjing',
-          amount: 234
-        }
-      ]
+      return virtueList
     }
   },
   methods: {
