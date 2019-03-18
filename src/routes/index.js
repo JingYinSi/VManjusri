@@ -1,6 +1,7 @@
 import Home from '../pages/Home.vue'
 import Lamps from '../pages/Lamps.vue'
 import DailyVirtue from '../pages/DailyVirtue.vue'
+import Me from '../pages/Me.vue'
 import Monks from '../pages/Monks.vue'
 import ForPrice from '../pages/ForPrice.vue'
 import ForAmount from '../pages/ForAmount.vue'
@@ -44,6 +45,11 @@ const routes = [
     path: '/daily/virtue',
     name: 'virtue',
     component: DailyVirtue
+  },
+  {
+    path: '/me',
+    name: 'me',
+    component: Me
   },
   {
     path: '/',
