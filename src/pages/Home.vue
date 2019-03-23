@@ -1,12 +1,14 @@
 <template>
-  <div class="w-100">
+  <div>
     <main-head v-bind="head"></main-head>
-    <div class="row">
-      <div class="col-12">
-        <router-view />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <router-view />
+        </div>
       </div>
+      <foot-menu/>
     </div>
-    <foot-menu/>
   </div>
 </template>
 
