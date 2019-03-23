@@ -10,9 +10,9 @@
             <img class="mx-2" height="25px" src="/static/img/flower.png"/>
           </div>
           <div class="col-auto px-0">
-            <h5 class="ml-3">金额：</h5>
+            <h5 class="ml-4">金额：</h5>
           </div>
-          <div class="col-7 pr-0">
+          <div class="col-6 pr-0">
             <input type="text" class="form-control text-right"/>
           </div>
           <div class="col-auto">
