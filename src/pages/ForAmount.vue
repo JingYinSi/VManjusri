@@ -24,11 +24,11 @@
           <h5 class="" style="font-size:20px;font-weight:600">{{item.num}}</h5>
       </div>
     </div>
-    <div class="d-flex mt-2">
+    <div class="d-flex mt-4">
       <p class="text-dark pl-2" style="border-left-style:solid;border-left-width:7px;
           border-left-color:red;font-size:20px;height:35px;font-weight:600">详情介绍</p>
     </div>
-    <div class="d-flex" style="height:30px">
+    <div class="d-flex" style="height:60px">
       {{item.desc}}
     </div>
     <div class="d-flex mt-2">
