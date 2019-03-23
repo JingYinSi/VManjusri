@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <div class="w-100">
     <main-head v-bind="head"></main-head>
     <div class="row">
-      <div class="col">
+      <div class="col-12">
         <router-view />
       </div>
     </div>

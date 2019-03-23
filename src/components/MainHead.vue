@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <img class="w-100" style="height:180px" :src="banner"/>
     <div style="top:120px;left:10px;z-index:1;position:absolute;">
       <div class="d-inline-flex align-items-center">

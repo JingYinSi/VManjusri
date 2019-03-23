@@ -5,8 +5,8 @@
           {{summary}}
       </p>
     </div>
-    <div class="row mt-2" style="margin-bottom:80px">
-      <div class="col p-0">
+    <div class="row mt-2" style="margin-bottom:50px">
+      <div class="col-12 p-0">
         <div class="font-weight-bold" style="width:76px;font-size:18px;border-bottom:2px solid red" :style="titleStyle">
           {{title}}
         </div>
