@@ -4,33 +4,16 @@
       <div class="d-flex justify-content-center">
         <img class="mt-2" height="220px" src="/static/img/banner-user.png"/>
       </div>
-      <div class="w-100" style="margin-top:50px">
-        <div class="row">
-          <div class="col-1">
-            <img class="mx-2" height="25px" src="/static/img/flower.png"/>
-          </div>
-          <div class="col-auto px-0">
-            <h5 class="ml-4">金额：</h5>
-          </div>
-          <div class="col-6 pr-0">
-            <input type="text" class="form-control text-right"/>
-          </div>
-          <div class="col-auto">
-            <h5>元</h5>
-          </div>
+      <div class="d-flex flex-column" style="margin-top:50px">
+        <div class="d-flex align-items-center">
+          <img class="mx-2" height="25px" src="/static/img/flower.png"/>
+          <h5 class="ml-1">金额：</h5>
+          <input type="text" class="form-control text-right w-50"/>
+          <h5 class="ml-4">元</h5>
         </div>
-        <div class="row">
-          <div class="col-10 offset-1">
-            <div class="d-flex mt-3 justify-content-between" style="height:65px">
-              <div v-for="p in prices1" :key="p" style="width:30%">
-                <div class="price-bar">{{p}}元</div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between" style="height:50px">
-              <div v-for="p in prices2" :key="p" style="width:30%">
-                <div class="price-bar">{{p}}元</div>
-              </div>
-            </div>
+        <div class="d-flex flex-row flex-wrap justify-content-around mt-4 px-3">
+          <div v-for="p in prices" :key="p" style="height:65px; width:28%">
+            <div class="price-bar">{{p}}元</div>
           </div>
         </div>
         <div class="row" style="margin-top:40px">
@@ -108,11 +91,8 @@ export default {
     FootMenu
   },
   computed: {
-    prices1 () {
-      return [1, 3, 5]
-    },
-    prices2 () {
-      return [10, 88, 99]
+    prices () {
+      return [1, 3, 5, 10, 88, 99]
     },
     virtues () {
       return virtueList
@@ -125,7 +105,6 @@ export default {
 
 <style>
 .price-bar {
-    width:100px;
     height: 50px;
     border-radius: 5px;
     background: #fcf6d4;
