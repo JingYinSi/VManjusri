@@ -11,7 +11,7 @@
           <input type="text" class="form-control text-right w-50"/>
           <h5 class="ml-4">元</h5>
         </div>
-        <div class="d-flex flex-row flex-wrap justify-content-around mt-4 px-3">
+        <div class="d-flex flex-row flex-wrap justify-content-around mt-2 px-3">
           <div v-for="p in prices" :key="p" style="height:65px; width:28%">
             <div class="price-bar">{{p}}元</div>
           </div>

@@ -13,7 +13,7 @@ export default {
     props () {
       const items = {
         ...monkItems,
-        titleStyle: 'width:110px'
+        titleStyle: 'width:120px'
       }
       return items
     }
