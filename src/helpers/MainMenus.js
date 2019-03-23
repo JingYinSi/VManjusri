@@ -12,7 +12,7 @@ const mainmenus = [{
 },
 {
   to: 'me',
-  name: '我1'
+  name: '我'
 }
 ]
 
