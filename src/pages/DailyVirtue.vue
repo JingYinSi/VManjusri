@@ -21,13 +21,13 @@
         </div>
         <div class="row">
           <div class="col-10 offset-1">
-            <div class="row mt-3" style="height:65px">
-              <div v-for="p in prices1" :key="p" class="col-4">
+            <div class="d-flex mt-3 justify-content-between" style="height:65px">
+              <div v-for="p in prices1" :key="p" style="width:30%">
                 <div class="price-bar">{{p}}元</div>
               </div>
             </div>
-            <div class="row" style="height:50px">
-              <div v-for="p in prices2" :key="p" class="col-4">
+            <div class="d-flex justify-content-between" style="height:50px">
+              <div v-for="p in prices2" :key="p" style="width:30%">
                 <div class="price-bar">{{p}}元</div>
               </div>
             </div>
@@ -38,7 +38,7 @@
             <img class="mx-2" height="25px" src="/static/img/flower.png"/>
           </div>
           <div class="col-10">
-            <h5>姓名：</h5>
+            <h5 class="ml-2">姓名：</h5>
             <input type="text" class="form-control"/>
           </div>
         </div>
@@ -47,7 +47,7 @@
             <img class="mx-2" height="25px" src="/static/img/flower.png"/>
           </div>
           <div class="col-10">
-            <h5>回向：</h5>
+            <h5 class="ml-2">回向：</h5>
             <textarea  rows="3" class="form-control"
               style="z-index:auto;position:relative;line-height:28.5714px;
                     font-size:20px;transition:none 0s ease 0s;background:#f4f4f4;"/>
