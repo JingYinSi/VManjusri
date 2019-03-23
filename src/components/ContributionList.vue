@@ -12,7 +12,7 @@
         </div>
         <div class="d-flex flex-wrap mt-2">
           <div v-for="(item, index) in items" :key="index" class="d-flex flex-column mb-3"
-            :class="mrAuto(index)" style="width: 160px" @click="onClicked(index)">
+            :class="mrAuto(index)" style="width:45%" @click="onClicked(index)">
             <img :src="item.img" class="" style="height:120px">
             <div class="d-inline-flex mt-2" style="height:30px">
               <p class="mr-auto"  style="font-size:18px">{{item.name}}</p>

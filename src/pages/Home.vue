@@ -2,11 +2,7 @@
   <div>
     <main-head v-bind="head"></main-head>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <router-view />
-        </div>
-      </div>
+      <router-view />
       <foot-menu/>
     </div>
   </div>
