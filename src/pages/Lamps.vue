@@ -1,5 +1,5 @@
 <template>
-  <contribution-list v-bind="props" @selected="onSelected"/>
+  <contribution-list v-bind="lampItems" @selected="onSelected"/>
 </template>
 
 <script>
@@ -10,22 +10,24 @@ export default {
   components: {
     ContributionList
   },
-  computed: {
-    props () {
-      const lamps = this.lamplist()
-      const items = {
-        ...lamps,
+  data () {
+    return {
+      lampItems: {
+        title: '',
+        items: [],
         afterNum: '人已供灯',
         titleStyle: 'width:75px'
       }
-      return items
     }
+  },
+  async created () {
+    let lamps = await this.lamplist()
+    this.lampItems = {...this.lampItems, ...lamps.data}
   },
   methods: {
     ...mapActions(['lamplist']),
     onSelected (index) {
-      const lamps = this.lamplist()
-      this.$router.push({name: 'forprice', params: {type: lamps.type, id: index}})
+      this.$router.push({name: 'forprice', params: {type: this.lampItems.type, id: index}})
     }
   }
 }
