@@ -1,6 +1,7 @@
 import __ from 'underscore'
+import store from '../store'
 
-const remote = {
+/* const remote = {
   type: 'lamping',
   summary: '供灯之功德总述',
   title: '供灯祈福',
@@ -30,15 +31,18 @@ const remote = {
     num: 5000
   }
   ]
-}
+} */
 
 function lamps () {
-  remote.items = __.map(remote.items, item => {
+  console.log('enter lamps list ......')
+  const lamps = store.dispatch('lamplist')
+  console.log('enter lamps list is listed ......')
+  lamps.items = __.map(lamps.items, item => {
     return {
       ...item,
       img: item.img || '/static/img/lamps.jpg'
     }
   })
-  return remote
+  return lamps
 }
-export default lamps()
+export default lamps

@@ -29,17 +29,23 @@ const actions = {
     }
   },
 
-  async logout ({
+  async lamplist ({
+    getter,
     commit
   }) {
-    commit('user', null)
-    if (router.currentRoute.matched.some(r => !r.meta.public)) {
-      router.replace({
-        name: 'login',
-        params: {
-          wantedRoute: router.currentRoute.fullPath
-        }
-      })
+    try {
+      /* let links = getter('entry')
+      // console.log(JSON.stringify(links, null, 2))
+      if (!links) {
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
+        links = await $entry()
+        commit('entry', links)
+        console.log(JSON.stringify(links, null, 2))
+      } */
+      const lamps = await $get('/manjusri/lamps/index')
+      return lamps
+    } catch (e) {
+      // do nothing
     }
   }
 }

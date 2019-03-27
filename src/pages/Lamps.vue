@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import lampItems from '../helpers/LampItems.js'
+// import lampItems from '../helpers/LampItems.js'
+import { mapActions } from 'vuex'
 import ContributionList from '../components/ContributionList'
 export default {
   components: {
@@ -11,8 +12,9 @@ export default {
   },
   computed: {
     props () {
+      const lamps = this.lamplist()
       const items = {
-        ...lampItems,
+        ...lamps,
         afterNum: '人已供灯',
         titleStyle: 'width:75px'
       }
@@ -20,8 +22,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['lamplist']),
     onSelected (index) {
-      this.$router.push({name: 'forprice', params: {type: lampItems.type, id: index}})
+      const lamps = this.lamplist()
+      this.$router.push({name: 'forprice', params: {type: lamps.type, id: index}})
     }
   }
 }
