@@ -19,7 +19,7 @@ for (const key in filters) {
 }
 
 const entryUrl = '/manjusri'
-const baseUrl = process.env.NODE_ENV === 'production' ? '/jingyin/rests' : 'http://localhost/jingyin/rests'
+const baseUrl = process.env.NODE_ENV === 'production' ? 'http://dev.jingyintemple.top/jingyin/rests' : 'http://localhost/jingyin/rests'
 Vue.use(VueFetch, {entryUrl, baseUrl})
 
 async function main () {
