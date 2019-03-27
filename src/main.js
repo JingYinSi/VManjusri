@@ -18,10 +18,9 @@ for (const key in filters) {
   Vue.filter(key, filters[key])
 }
 
-Vue.use(VueFetch, {
-  entryUrl: process.env.NODE_ENV === 'production' ? 'http://192.168.5.166/cross/auth/login' : 'http://localhost:8090/cross/auth/login',
-  baseUrl: process.env.NODE_ENV === 'production' ? 'http://192.168.5.166/cross/api' : 'http://localhost:8090/cross/api'
-})
+const entryUrl = '/manjusri'
+const baseUrl = process.env.NODE_ENV === 'production' ? '/jingyin/rests' : 'http://localhost/jingyin/rests'
+Vue.use(VueFetch, {entryUrl, baseUrl})
 
 async function main () {
   new Vue({
