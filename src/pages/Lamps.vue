@@ -12,6 +12,7 @@ export default {
   },
   data () {
     return {
+      links: null,
       lampItems: {
         title: '',
         items: [],

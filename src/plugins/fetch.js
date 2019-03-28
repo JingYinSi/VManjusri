@@ -3,6 +3,7 @@ let baseUrl, entryUrl
 async function __sendHttp (url, method, data) {
   const options = {
     headers: {
+      // 'Cache-Control': 'no-cache', // TODO: we should use cache in product mode
       'content-type': 'application/json'
     },
     method: method,
@@ -66,7 +67,7 @@ export async function $upload (url, formData) {
 
 export async function $entry () {
   const data = await $get(entryUrl)
-  return data
+  return data ? data.links : data
 }
 
 export default {

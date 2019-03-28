@@ -23,6 +23,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'http://dev.jingyintempl
 Vue.use(VueFetch, {entryUrl, baseUrl})
 
 async function main () {
+  await store.dispatch('entry')
   new Vue({
     ...Main,
     router,

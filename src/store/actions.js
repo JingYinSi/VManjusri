@@ -7,46 +7,27 @@ import {
   $upload
 } from '../plugins/fetch'
 import router from '../router'
-// import moment from 'moment'
+import __ from 'underscore'
 
 const actions = {
-  async entry ({
-    commit
-  }) {
-    try {
-      const links = await $entry()
-      if (links) {
-        commit('entry', links)
-        let path = router.currentRoute.params.wantedRoute || {
-          name: 'home'
-        }
-        router.replace(
-          path
-        )
-      }
-    } catch (e) {
-      // do nothing
+  async entry (ctx) {
+    let entry = ctx.getters.entry
+    if (!entry) {
+      entry = await $entry()
+      let links = {}
+      __.each(entry, item => {
+        links[item.rel] = item.href
+      })
+      ctx.commit('entry', links)
+      entry = links
     }
+    return entry
   },
 
-  async lamplist ({
-    getter,
-    commit
-  }) {
-    try {
-      /* let links = getter('entry')
-      // console.log(JSON.stringify(links, null, 2))
-      if (!links) {
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
-        links = await $entry()
-        commit('entry', links)
-        console.log(JSON.stringify(links, null, 2))
-      } */
-      const lamps = await $get('/manjusri/lamps/index')
-      return lamps
-    } catch (e) {
-      // do nothing
-    }
+  async lamplist (ctx) {
+    let entry = ctx.getters.entry
+    const lamps = $get(entry.Lamps)
+    return lamps
   }
 }
 
