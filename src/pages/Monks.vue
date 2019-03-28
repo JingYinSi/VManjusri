@@ -1,28 +1,33 @@
 <template>
-  <contribution-list v-bind="props" @selected="onSelected"/>
+  <contribution-list v-bind="monkItems" @selected="onSelected"/>
 </template>
 
 <script>
-import monkItems from '../helpers/MonkItems.js'
+import { mapActions } from 'vuex'
 import ContributionList from '../components/ContributionList'
 export default {
   components: {
     ContributionList
   },
-  computed: {
-    props () {
-      const items = {
-        ...monkItems,
+  data () {
+    return {
+      monkItems: {
+        title: '',
+        items: [],
         titleStyle: 'width:120px'
       }
-      return items
     }
   },
+  async created () {
+    let monks = await this.monklist()
+    this.monkItems = {...this.lampItems, ...monks.data}
+  },
   methods: {
+    ...mapActions(['monklist']),
     onSelected (index) {
-      const item = monkItems.items[index]
+      const item = this.monkItems.items[index]
       const type = item.target > 0 ? 'foramount' : 'forprice'
-      this.$router.push({name: type, params: {type: monkItems.type, id: index}})
+      this.$router.push({name: type, params: {type: this.monkItems.type, id: index}})
     }
   }
 }

@@ -26,8 +26,14 @@ const actions = {
 
   async lamplist (ctx) {
     let entry = ctx.getters.entry
-    const lamps = $get(entry.Lamps)
-    return lamps
+    const data = $get(entry.Lamps)
+    return data
+  },
+
+  async monklist (ctx) {
+    let entry = ctx.getters.entry
+    const data = $get(entry.Monks)
+    return data
   }
 }
 
