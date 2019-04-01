@@ -9,18 +9,20 @@ import {
 import router from '../router'
 import __ from 'underscore'
 
+function dealWithLinkages (linkages) {
+  let links = {}
+  __.each(linkages, item => {
+    links[item.rel] = item.href
+  })
+  return links
+}
+
 const actions = {
   async entry (ctx) {
-    let entry = ctx.getters.entry
-    if (!entry) {
-      entry = await $entry()
-      let links = {}
-      __.each(entry, item => {
-        links[item.rel] = item.href
-      })
-      ctx.commit('entry', links)
-      entry = links
-    }
+    let entry = await $entry()
+    let links = dealWithLinkages(entry)
+    ctx.commit('entry', links)
+    entry = links
     return entry
   },
 
