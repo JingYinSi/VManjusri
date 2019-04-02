@@ -22,20 +22,12 @@ const actions = {
     let entry = await $entry()
     let links = dealWithLinkages(entry)
     ctx.commit('entry', links)
-    entry = links
-    return entry
   },
 
-  async lamplist (ctx) {
+  async onlineList (ctx) {
     let entry = ctx.getters.entry
-    const data = $get(entry.Lamps)
-    return data
-  },
-
-  async monklist (ctx) {
-    let entry = ctx.getters.entry
-    const data = $get(entry.Monks)
-    return data
+    const onlines = await $get(entry.Onlines)
+    ctx.commit('onlines', onlines)
   }
 }
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ContributionList from '../components/ContributionList'
 export default {
   components: {
@@ -19,11 +19,16 @@ export default {
     }
   },
   async created () {
-    let monks = await this.monklist()
-    this.monkItems = {...this.lampItems, ...monks.data}
+    await this.loadOnlines()
   },
   methods: {
-    ...mapActions(['monklist']),
+    ...mapGetters(['onlines']),
+    ...mapActions(['onlineList']),
+    async loadOnlines () {
+      await this.onlineList()
+      const onlines = this.onlines()
+      this.monkItems = {...this.monkItems, ...onlines.data.formonks}
+    },
     onSelected (index) {
       const item = this.monkItems.items[index]
       const type = item.target > 0 ? 'foramount' : 'forprice'

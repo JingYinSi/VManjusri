@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import onlines from '../helpers/Onlines.js'
+import { mapGetters } from 'vuex'
+// import onlines from '../helpers/Onlines.js'
 export default {
   components: {
   },
@@ -39,14 +40,19 @@ export default {
     }
   },
   computed: {
+    onlineItems () {
+      const onlines = this.onlines()
+      return onlines.data
+    },
     title () {
-      return onlines[this.$route.params.type].title
+      return this.onlineItems[this.$route.params.type].title
     },
     item () {
-      return onlines[this.$route.params.type].items[this.$route.params.id]
+      return this.onlineItems[this.$route.params.type].items[this.$route.params.id]
     }
   },
   methods: {
+    ...mapGetters(['onlines']),
     pay () {
       alert(JSON.stringify({name: this.name, hope: this.hope, amount: this.item.price}, null, 2))
       this.$router.go(-1)

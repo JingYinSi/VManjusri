@@ -5,7 +5,7 @@ import Me from '../pages/Me.vue'
 import Monks from '../pages/Monks.vue'
 import ForPrice from '../pages/ForPrice.vue'
 import ForAmount from '../pages/ForAmount.vue'
-import Confirm from '../pages/Confirm.vue'
+import Payfor from '../pages/Payfor.vue'
 import NotFound from '../components/NotFound.vue'
 
 const homeRoutes = [{
@@ -29,7 +29,7 @@ const routes = [
   {
     path: '/payfor/:type/:id',
     name: 'payfor',
-    component: Confirm
+    component: Payfor
   },
   {
     path: '/suixi/forprice/:type/:id',
@@ -37,7 +37,7 @@ const routes = [
     component: ForPrice
   },
   {
-    path: '/suixi/foramount/:/type/:id',
+    path: '/suixi/foramount/:type/:id',
     name: 'foramount',
     component: ForAmount
   },

@@ -3,8 +3,7 @@
 </template>
 
 <script>
-// import lampItems from '../helpers/LampItems.js'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ContributionList from '../components/ContributionList'
 export default {
   components: {
@@ -21,11 +20,16 @@ export default {
     }
   },
   async created () {
-    let lamps = await this.lamplist()
-    this.lampItems = {...this.lampItems, ...lamps.data}
+    await this.loadOnlines()
   },
   methods: {
-    ...mapActions(['lamplist']),
+    ...mapGetters(['onlines']),
+    ...mapActions(['onlineList']),
+    async loadOnlines () {
+      await this.onlineList()
+      let lamps = this.onlines()
+      this.lampItems = {...this.lampItems, ...lamps.data.lamping}
+    },
     onSelected (index) {
       this.$router.push({name: 'forprice', params: {type: this.lampItems.type, id: index}})
     }

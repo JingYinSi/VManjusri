@@ -95,7 +95,8 @@
 </template>
 
 <script>
-import itemsList from '../helpers/MonkItems.js'
+import { mapGetters } from 'vuex'
+// import itemsList from '../helpers/MonkItems.js'
 import suixiList from '../helpers/SuixiList.js'
 
 const __predefinedAmounts = [20, 50, 100]
@@ -118,7 +119,10 @@ export default {
       return __predefinedAmounts
     },
     item () {
-      const item = itemsList.items[this.$route.params.id]
+      let {type, id} = this.$route.params
+      const onlines = this.onlines()
+      const itemsList = onlines.data[type]
+      const item = itemsList.items[id]
       return {
         title: itemsList.title,
         progress: item.target > 0 && item.amount >= 0 ? 'width:' + item.amount * 100 / item.target + '%' : '',
@@ -129,6 +133,7 @@ export default {
   created () {
   },
   methods: {
+    ...mapGetters(['onlines']),
     amountStyle (amt) {
       return amt === this.amount ? 'border-danger' : 'border-secondary'
     },
