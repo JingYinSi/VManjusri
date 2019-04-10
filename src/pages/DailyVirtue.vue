@@ -8,11 +8,11 @@
         <div class="d-flex align-items-center">
           <img class="mx-2" height="25px" src="/static/img/flower.png"/>
           <h5 class="ml-1">金额：</h5>
-          <input type="text" class="form-control text-right w-50"/>
+          <input type="text" class="form-control text-right w-50" v-model="amount"/>
           <h5 class="ml-4">元</h5>
         </div>
         <div class="d-flex flex-row flex-wrap justify-content-around mt-2 px-3">
-          <div v-for="p in prices" :key="p" style="height:65px; width:28%">
+          <div v-for="p in prices" :key="p" style="height:65px; width:28%" @click="onSelAmount(p)">
             <div class="price-bar">{{p}}元</div>
           </div>
         </div>
@@ -22,7 +22,7 @@
           </div>
           <div class="col-10">
             <h5 class="ml-2">姓名：</h5>
-            <input type="text" class="form-control"/>
+            <input type="text" class="form-control" v-model="name"/>
           </div>
         </div>
         <div class="row" style="margin-top:40px">
@@ -31,7 +31,7 @@
           </div>
           <div class="col-10">
             <h5 class="ml-2">回向：</h5>
-            <textarea  rows="3" class="form-control"
+            <textarea  rows="3" class="form-control" v-model="giving"
               style="z-index:auto;position:relative;line-height:28.5714px;
                     font-size:20px;transition:none 0s ease 0s;background:#f4f4f4;"/>
           </div>
@@ -39,7 +39,7 @@
         <div class="row" style="margin-top:15px">
           <div class="col-12">
             <div class="mx-auto" style="width:150px">
-                <button type="button" class="btn w-100" style="background-color:#fbc200">确认</button>
+                <button type="button" class="btn w-100" style="background-color:#fbc200" @click="onConfirm">确认</button>
             </div>
           </div>
         </div>
@@ -90,6 +90,13 @@ export default {
   components: {
     FootMenu
   },
+  data () {
+    return {
+      name: null,
+      giving: null,
+      amount: null
+    }
+  },
   computed: {
     prices () {
       return [1, 3, 5, 10, 88, 99]
@@ -99,6 +106,15 @@ export default {
     }
   },
   methods: {
+    onSelAmount (sel) {
+      this.amount = sel
+    },
+    onConfirm () {
+      let dataToPost = {name: this.name, giving: this.giving, amount: this.amount}
+      // alert(JSON.stringify(dataToPost, null, 2))
+      // eslint-disable-next-line no-undef
+      requestDoTansaction(dataToPost)
+    }
   }
 }
 </script>
