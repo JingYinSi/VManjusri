@@ -16,8 +16,9 @@ async function __sendHttp (url, method, data) {
     return data
   } else if (response.redirected) {
     const url = response.headers.Location
-    alert(url)
-    window.location.href = url
+    const msg = url || 'aaaaaaaaaaaaaaaaaaa'
+    window.alert(msg)
+    // window.location.href = url
     return url
     // response.redirect(response.headers.Location)
   } else {
