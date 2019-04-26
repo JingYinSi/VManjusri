@@ -15,7 +15,11 @@ async function __sendHttp (url, method, data) {
     const data = await response.json()
     return data
   } else if (response.redirected) {
-    return response.redirect(response.headers.Location)
+    const url = response.headers.Location
+    alert(url)
+    window.location.href = url
+    return url
+    // response.redirect(response.headers.Location)
   } else {
     const message = await response.text()
     const error = new Error(message)
