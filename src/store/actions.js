@@ -28,6 +28,12 @@ const actions = {
     let entry = ctx.getters.entry
     const onlines = await $get(entry.Onlines)
     ctx.commit('onlines', onlines)
+  },
+
+  async wechatPrepay (ctx, data) {
+    let entry = ctx.getters.entry
+    const resData = await $post(entry.DailyVirtues, data)
+    return resData
   }
 }
 

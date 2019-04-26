@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import FootMenu from '../components/FootMenu'
 import virtueList from '../helpers/DailyVirtueList.js'
 export default {
@@ -106,14 +107,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['wechatPrepay']),
     onSelAmount (sel) {
       this.amount = sel
     },
     onConfirm () {
       let dataToPost = {name: this.name, giving: this.giving, amount: this.amount}
-      // alert(JSON.stringify(dataToPost, null, 2))
-      // eslint-disable-next-line no-undef
-      requestDoTansaction(dataToPost)
+      this.wechatPrepay(dataToPost)
     }
   }
 }

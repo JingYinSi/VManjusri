@@ -1,3 +1,4 @@
+import __ from 'underscore'
 let baseUrl, entryUrl
 
 async function __sendHttp (url, method, data) {
@@ -13,6 +14,8 @@ async function __sendHttp (url, method, data) {
   if (response.ok) {
     const data = await response.json()
     return data
+  } else if (response.redirected) {
+    return response.redirect(response.headers.Location)
   } else {
     const message = await response.text()
     const error = new Error(message)
@@ -29,7 +32,8 @@ export async function $get (url) {
 
 export async function $post (url, data) {
   const finalUrl = url.startsWith(baseUrl) ? url : `${baseUrl}${url}`
-  const response = await __sendHttp(finalUrl, 'POST', data)
+  const dataToPost = __.isObject(data) ? JSON.stringify(data) : data
+  const response = await __sendHttp(finalUrl, 'POST', dataToPost)
   return response
 }
 
