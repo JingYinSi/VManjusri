@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 function redirectToWechatAuth2 (redirectUrl) {
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-  const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`
+  const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
 
   window.alert(wrapedUrl)
   window.location.href = wrapedUrl
@@ -28,7 +28,8 @@ async function __beforeEach (to, from, next) {
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.href
       console.log(redirectUrl)
-      redirectToWechatAuth2(redirectUrl)
+      // redirectToWechatAuth2(redirectUrl)
+      redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
       return
     }
     await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
