@@ -4,7 +4,7 @@ let baseUrl, entryUrl
 async function __sendHttp (url, method, data) {
   const options = {
     headers: {
-      // 'Cache-Control': 'no-cache', // TODO: we should use cache in product mode
+      'Cache-Control': 'no-cache', // TODO: we should use cache in product mode
       'content-type': 'application/json'
     },
     method: method,
@@ -14,13 +14,6 @@ async function __sendHttp (url, method, data) {
   if (response.ok) {
     const data = await response.json()
     return data
-  } else if (response.redirected) {
-    const url = response.headers.Location
-    const msg = url || 'aaaaaaaaaaaaaaaaaaa'
-    window.alert(msg)
-    // window.location.href = url
-    return url
-    // response.redirect(response.headers.Location)
   } else {
     const message = await response.text()
     const error = new Error(message)
