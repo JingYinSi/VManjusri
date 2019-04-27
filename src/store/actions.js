@@ -6,7 +6,6 @@ import {
   $put,
   $upload
 } from '../plugins/fetch'
-import router from '../router'
 import __ from 'underscore'
 
 function dealWithLinkages (linkages) {
@@ -28,6 +27,13 @@ const actions = {
     let entry = ctx.getters.entry
     const onlines = await $get(entry.Onlines)
     ctx.commit('onlines', onlines)
+  },
+
+  async wechatSignin (ctx, code) {
+    let entry = ctx.getters.entry
+    const url = `${entry.wechatSignin}?code=${code}`
+    const userInfo = await $get(url)
+    ctx.commit('user', userInfo)
   },
 
   async wechatPrepay (ctx, data) {
