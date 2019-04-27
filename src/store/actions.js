@@ -29,10 +29,19 @@ const actions = {
     ctx.commit('onlines', onlines)
   },
 
-  async wechatSignin (ctx, code) {
+  /* async wechatSignin (ctx, code) {
     let entry = ctx.getters.entry
     const url = `${entry.wechatSignin}?code=${code}`
     const userInfo = await $get(url)
+    ctx.commit('user', userInfo)
+  }, */
+
+  async wechatSignin (ctx) {
+    let entry = ctx.getters.entry
+    const appId = 'wx6fd4695fd38a8b3f'
+    const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
+    const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${entry.wechatSignin}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
+    const userInfo = await $get(wrapedUrl)
     ctx.commit('user', userInfo)
   },
 

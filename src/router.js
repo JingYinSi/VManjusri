@@ -5,14 +5,14 @@ import store from './store'
 
 Vue.use(VueRouter)
 
-function redirectToWechatAuth2 (redirectUrl) {
+/* function redirectToWechatAuth2 (redirectUrl) {
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
   const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
 
   window.alert(wrapedUrl)
   window.location.href = wrapedUrl
-}
+} */
 
 async function __beforeEach (to, from, next) {
   if (to.name === 'home') {
@@ -20,7 +20,7 @@ async function __beforeEach (to, from, next) {
       name: 'lamps'
     })
   } else if (!to.matched.some(item => item.meta.noAuth) && !store.getters.user) {
-    const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
+    /* const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
       console.log(window.location.origin)
@@ -31,8 +31,8 @@ async function __beforeEach (to, from, next) {
       // redirectToWechatAuth2(redirectUrl)
       redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
       return
-    }
-    await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
+    } */
+    await store.dispatch('wechatSignin') // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
   }
   next()
 }
