@@ -6,9 +6,11 @@ import store from './store'
 Vue.use(VueRouter)
 
 function redirectToWechatAuth2 (redirectUrl) {
+  let wrapedUrl = encodeURI(redirectUrl)
+  window.alter(wrapedUrl)
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-  const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
+  wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
   window.alter(wrapedUrl)
   window.location.href = encodeURI(wrapedUrl)
 }
