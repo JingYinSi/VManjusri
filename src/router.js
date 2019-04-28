@@ -22,14 +22,15 @@ async function __beforeEach (to, from, next) {
     const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
-      console.log(window.location.origin)
+      window.alter(window.location.origin)
       console.log(to.fullPath)
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.href
       console.log(redirectUrl)
       // redirectToWechatAuth2(redirectUrl)
       redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
-      return window.location.assign(redirectUrl)
+      window.alert('aaaaaaaaaaaaaaaa')
+      return router.replace(to)
     }
     window.alert('code: ' + code)
     await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
