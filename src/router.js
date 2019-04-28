@@ -7,11 +7,11 @@ Vue.use(VueRouter)
 
 function redirectToWechatAuth2 (redirectUrl) {
   let wrapedUrl = encodeURI(redirectUrl)
-  window.alter(wrapedUrl)
+  alert(wrapedUrl)
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-  wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
-  window.alter(wrapedUrl)
+  wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+  alert(wrapedUrl)
   window.location.href = encodeURI(wrapedUrl)
 }
 
@@ -46,19 +46,20 @@ async function __beforeEach (to, from, next) {
       name: 'lamps'
     })
   } else if (!to.matched.some(item => item.meta.noAuth) && !store.getters.user) {
+    // alert('aaaaaaaaaaaa')
     const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
-      window.alter(window.location.origin)
-      window.alter(to.fullPath)
+      // alert(window.location.origin)
+      // alert(to.fullPath)
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.href
-      window.alter(redirectUrl)
+      alert(redirectUrl)
       redirectToWechatAuth2(redirectUrl)
       // redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
       return router.replace(to)
     }
-    window.alert('code: ' + code)
+    alert('code: ' + code)
     await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
   }
   next()
