@@ -11,8 +11,7 @@ import NotFound from '../components/NotFound.vue'
 const homeRoutes = [{
   path: 'lamps',
   name: 'lamps',
-  component: Lamps,
-  meta: {noAuth: true}
+  component: Lamps
 },
 {
   path: 'monks',
