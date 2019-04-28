@@ -10,7 +10,8 @@ function redirectToWechatAuth2 (redirectUrl) {
   alert(wrapedUrl)
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-  wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+  // wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
+  wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${wrapedUrl}&response_type=code&scope=snsapi_base&state=123#wechat_redirect`
   alert(wrapedUrl)
   window.location.href = encodeURI(wrapedUrl)
 }
