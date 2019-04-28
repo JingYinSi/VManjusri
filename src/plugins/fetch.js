@@ -23,8 +23,7 @@ async function __sendHttp (url, method, data) {
 }
 
 export async function $get (url) {
-  // const finalUrl = url.startsWith(baseUrl) ? url : `${baseUrl}${url}`
-  const finalUrl = url
+  const finalUrl = url.startsWith('http') ? url : `${baseUrl}${url}`
   const response = await __sendHttp(finalUrl, 'GET')
   return response
 }
