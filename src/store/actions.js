@@ -32,9 +32,15 @@ const actions = {
   async wechatUser (ctx) {
     let entry = ctx.getters.entry
     const url = entry.wechatUser
-    const userInfo = await $get(url)
-    ctx.commit('user', userInfo)
-    return userInfo
+    let success = true
+    try {
+      const userInfo = await $get(url)
+      ctx.commit('user', userInfo)
+      return userInfo
+    } catch (e) {
+      success = false
+    }
+    return success
   },
 
   /* async wechatSignin (ctx) {
