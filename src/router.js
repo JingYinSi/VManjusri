@@ -58,18 +58,14 @@ async function __beforeEach (to, from, next) {
     // next()
   } else if (!to.meta.noAuth && !store.getters.user) {
     alert('we are going to auth')
-    alert('meta.noAuth:' + to.meta.noAuth)
-    alert('window.location.href:' + window.location.href)
     const code = parseQueryParam(currentUrl, 'code')
     if (!code || code.length === 0) {
       alert('跳转到微信授权页面')
-      alert('orignurl is: ' + window.location.origin)
-      alert('to.fullPath is: ' + to.fullPath)
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.origin + '/index.html#' + to.fullPath
       alert(`redirectUrl is:${redirectUrl}`)
-      window.location.href = redirectUrl + '?code=12345'
-      // redirectToWechatAuth2(redirectUrl)
+      // window.location.href = redirectUrl + '?code=12345'
+      redirectToWechatAuth2(redirectUrl)
       // redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
       return false
     } else {
