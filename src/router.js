@@ -48,6 +48,7 @@ async function __beforeEach (to, from, next) {
     })
   } else if (to.matched.some(item => item.meta.noAuth !== true) && !store.getters.user) {
     alert('we are going to auth')
+    alert('meta.noAuth:' + to.meta.noAuth)
     /* const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
