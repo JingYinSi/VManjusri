@@ -87,13 +87,17 @@ async function __beforeEach (to, from, next) {
     // next()
   } else if (!to.meta.noAuth && !store.getters.user) {
     alert('we are going to auth')
-    const signed = await store.dispatch('wechatUser')
-    if (!signed) {
+    const code = parseQueryParam(currentUrl, 'code')
+    if (!code || code.length === 0) {
       alert('跳转到微信授权页面')
       redirectToWechatAuth2(`http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin?url=${to.fullPath}`)
       return false
     }
-    alert('we have signined!')
+    const signed = await store.dispatch('wechatUser', code)
+    if (!signed) {
+      alert('Failed to signed')
+      return false
+    }
   }
   next()
 }

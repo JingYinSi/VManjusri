@@ -29,18 +29,15 @@ const actions = {
     ctx.commit('onlines', onlines)
   },
 
-  async wechatUser (ctx) {
+  async wechatUser (ctx, code) {
     let entry = ctx.getters.entry
-    const url = entry.wechatUser
-    let success = true
+    const url = `${entry.wechatUser}?code=${code}`
     try {
       const userInfo = await $get(url)
       ctx.commit('user', userInfo)
       return userInfo
     } catch (e) {
-      success = false
     }
-    return success
   },
 
   /* async wechatSignin (ctx) {
