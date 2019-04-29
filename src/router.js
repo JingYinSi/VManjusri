@@ -46,7 +46,7 @@ async function __beforeEach (to, from, next) {
     router.replace({
       name: 'lamps'
     })
-  } else if (!to.matched.some(item => item.meta.noAuth) && !store.getters.user) {
+  } else if (to.matched.some(item => !item.meta.noAuth) && !store.getters.user) {
     const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
