@@ -12,7 +12,9 @@ const homeRoutes = [{
   path: 'lamps',
   name: 'lamps',
   component: Lamps,
-  meta: {noAuth: true}
+  meta: {
+    noAuth: true
+  }
 },
 {
   path: 'monks',
