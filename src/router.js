@@ -41,7 +41,8 @@ Vue.use(VueRouter)
 } */
 
 async function __beforeEach (to, from, next) {
-  alert('enter beforeEach ......')
+  const currentUrl = window.location.href
+  alert('enter beforeEach, url: ' + currentUrl)
   if (to.name === 'home') {
     router.replace({
       name: 'lamps'
