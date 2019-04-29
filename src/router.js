@@ -63,10 +63,10 @@ async function __beforeEach (to, from, next) {
       alert('跳转到微信授权页面')
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.origin + '/index.html#' + to.fullPath
-      alert(`redirectUrl is:${redirectUrl}`)
+      alert(`redirectUrl length [${redirectUrl.length}] is:${redirectUrl}`)
       // window.location.href = redirectUrl + '?code=12345'
       // redirectToWechatAuth2(redirectUrl)
-      redirectToWechatAuth2(`http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin?redirectUrl=${redirectUrl}`)
+      redirectToWechatAuth2(`http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin`)
       return false
     } else {
       alert('code: ' + code)
