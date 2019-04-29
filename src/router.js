@@ -68,7 +68,8 @@ async function __beforeEach (to, from, next) {
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = window.location.origin + '/index.html#' + to.fullPath
       alert(`redirectUrl is:${redirectUrl}`)
-      redirectToWechatAuth2(redirectUrl)
+      window.location.href = redirectUrl + '?code=12345'
+      // redirectToWechatAuth2(redirectUrl)
       // redirectToWechatAuth2('http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin')
       return false
     } else {
