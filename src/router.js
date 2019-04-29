@@ -48,7 +48,7 @@ function parseQueryParam (url, name) {
   next()
 } */
 
-async function __beforeEach (to, from, next) {
+/* async function __beforeEach (to, from, next) {
   const currentUrl = window.location.href
   alert('enter beforeEach, url: ' + currentUrl)
   if (to.name === 'home') {
@@ -71,8 +71,29 @@ async function __beforeEach (to, from, next) {
     } else {
       alert('code: ' + code)
     }
-    /* alert('code: ' + code)
-      await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取 */
+    alert('code: ' + code)
+      await store.dispatch('wechatSignin', code) // 获取用户信息,后端可首先通过cookie,session等判断,没有信息则通过code获取
+  }
+  next()
+} */
+
+async function __beforeEach (to, from, next) {
+  const currentUrl = window.location.href
+  alert('enter beforeEach, url: ' + currentUrl)
+  if (to.name === 'home') {
+    router.replace({
+      name: 'lamps'
+    })
+    // next()
+  } else if (!to.meta.noAuth && !store.getters.user) {
+    alert('we are going to auth')
+    const signed = await store.dispatch('wechatUser')
+    if (!signed) {
+      alert('跳转到微信授权页面')
+      redirectToWechatAuth2(`http://dev.jingyintemple.top/jingyin/rests/manjusri/wx/signin?url=${to.fullPath}`)
+      return false
+    }
+    alert('we have signined!')
   }
   next()
 }
