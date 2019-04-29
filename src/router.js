@@ -51,7 +51,7 @@ async function __beforeEach (to, from, next) {
     const code = new URL(window.location.href).searchParams.get('code') // 截取url上的code ,可能没有,则返回''空字符串
     if (!code || code.length === 0) {
       // 跳转到微信授权页面
-      // alert(window.location.origin)
+      alert(window.location.origin)
       // 这个redirectUrl用 当前页路径或者tof.fullPath(将要进入的路径)
       let redirectUrl = to.fullPath
       alert(`redirectUrl is:${redirectUrl}`)
