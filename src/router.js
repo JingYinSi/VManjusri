@@ -28,8 +28,8 @@ async function __beforeEach (to, from, next) {
     const code = parseQueryParam(currentUrl, 'code')
     if (!code || code.length === 0) {
       alert('we are going to redirect .....')
-      const restUrl = store.getters('entry') // .wechatSignin
-      alert('url of wechat is: ' + JSON.stringify(restUrl, null, 2) || 'undefined')
+      const restUrl = store.getters.entry.wechatSignin
+      alert('url of wechat is: ' + restUrl)
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
       return false
     }
