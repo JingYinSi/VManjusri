@@ -28,7 +28,9 @@ async function __beforeEach (to, from, next) {
   } else if (!to.meta.noAuth && !store.getters.user) {
     const code = parseQueryParam(currentUrl, 'code')
     if (!code || code.length === 0) {
-      const restUrl = store.getters('entry').wechatUser
+      alert('we are going to redirect .....')
+      const restUrl = store.getters('entry').wechatSignin
+      alert('url of wechat is: ' + restUrl)
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
       return false
     }
