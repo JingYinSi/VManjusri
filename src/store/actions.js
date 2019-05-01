@@ -34,13 +34,10 @@ const actions = {
     const url = `${entry.wechatUser}?code=${code}`
     try {
       let {token} = await $get(url)
-      alert('auth token:' + token)
       ctx.commit('token', token)
+      return token
     } catch (e) {
-      return false
     }
-
-    return true
   },
 
   /* async wechatSignin (ctx) {
