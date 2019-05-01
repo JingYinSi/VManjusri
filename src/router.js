@@ -6,7 +6,6 @@ import store from './store'
 Vue.use(VueRouter)
 
 function redirectToWechatAuth2 (redirectUrl) {
-  alert('env appId: ' + process.env.appId || 'UNDEFINED')
   const appId = 'wx6fd4695fd38a8b3f'
   const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
   const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
@@ -29,8 +28,9 @@ async function __beforeEach (to, from, next) {
     const token = parseQueryParam(currentUrl, 'token')
     if (!token || token.length === 0) {
       const restUrl = store.getters.entry.wechatSignin
+      alert('we are going to redirect ....')
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
-      return false
+      next()
     }
     store.commit('token', token)
   }
