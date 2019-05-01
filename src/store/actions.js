@@ -31,7 +31,7 @@ const actions = {
 
   async wechatUser (ctx, code) {
     let entry = ctx.getters.entry
-    const url = `${entry.wechatUser}?code=${code}`
+    const url = `${entry.wechatAuth}?code=${code}`
     try {
       let {token} = await $get(url)
       ctx.commit('token', token)
@@ -39,25 +39,6 @@ const actions = {
     } catch (e) {
     }
   },
-
-  /* async wechatSignin (ctx) {
-    let entry = ctx.getters.entry
-    const appId = 'wx6fd4695fd38a8b3f'
-    const oauth2BaseURL = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-    const wrapedUrl = `${oauth2BaseURL}?appid=${appId}&redirect_uri=${entry.wechatSignin}&response_type=code&scope=snsapi_userinfo#wechat_redirect`
-    const userInfo = await $get(wrapedUrl)
-    const response = await fetch(wrapedUrl)
-    if (response.ok) {
-      const data = await response.json()
-      return data
-    } else {
-      const message = await response.text()
-      const error = new Error(message)
-      error.response = response
-      throw error
-    }
-    ctx.commit('user', userInfo)
-  }, */
 
   async wechatPrepay (ctx, data) {
     let entry = ctx.getters.entry

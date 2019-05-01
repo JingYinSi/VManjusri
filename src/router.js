@@ -27,16 +27,11 @@ async function __beforeEach (to, from, next) {
   } else if (!to.meta.noAuth && !store.getters.token) {
     const code = parseQueryParam(currentUrl, 'code')
     if (!code || code.length === 0) {
-      const restUrl = store.getters.entry.wechatSignin
+      const restUrl = store.getters.entry.wechatCode
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
       return false
     }
-    const token = await store.dispatch('wechatUser', code)
-    alert('token: ' + token || 'undefined')
-    /* const signed = await store.dispatch('wechatUser', code)
-    if (!signed) {
-      return false
-    } */
+    await store.dispatch('wechatUser', code)
   }
   next()
 }
