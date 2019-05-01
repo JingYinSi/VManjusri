@@ -33,7 +33,7 @@ const actions = {
     let entry = ctx.getters.entry
     const url = `${entry.wechatUser}?code=${code}`
     try {
-      const token = await $get(url)
+      let {token} = await $get(url)
       alert('auth token:' + token)
       ctx.commit('token', token)
     } catch (e) {
