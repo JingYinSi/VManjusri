@@ -42,7 +42,10 @@ const actions = {
 
   async wechatPrepay (ctx, data) {
     let entry = ctx.getters.entry
-    const resData = await $post(entry.DailyVirtues, data)
+    // const resData = await $post(entry.DailyVirtues, data)
+    alert('wechatPrepay:' + JSON.stringify(data, null, 2))
+    const resData = await $get(entry.needAuth)
+    alert('needAuth:' + JSON.stringify(resData, null, 2))
     return resData
   }
 }

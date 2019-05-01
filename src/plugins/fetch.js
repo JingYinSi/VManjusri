@@ -1,4 +1,6 @@
 import __ from 'underscore'
+import store from './store'
+
 let baseUrl, entryUrl
 
 async function __sendHttp (url, method, data) {
@@ -9,6 +11,10 @@ async function __sendHttp (url, method, data) {
     },
     method: method,
     body: data
+  }
+  const token = store.getters.token
+  if (token) {
+    options.headers.authorization = `Bearer ${token}`
   }
   const response = await fetch(url, options)
   if (response.ok) {
