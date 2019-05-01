@@ -113,6 +113,7 @@ export default {
     },
     onConfirm () {
       let dataToPost = {name: this.name, giving: this.giving, amount: this.amount}
+      alert(dataToPost)
       this.wechatPrepay(dataToPost)
     }
   }
