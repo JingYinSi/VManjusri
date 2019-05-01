@@ -1,5 +1,5 @@
 import __ from 'underscore'
-import store from './store'
+import store from '../store'
 
 let baseUrl, entryUrl
 
