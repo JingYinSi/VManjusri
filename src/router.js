@@ -32,7 +32,6 @@ async function __beforeEach (to, from, next) {
       return false
     }
     const signed = await store.dispatch('wechatUser', code)
-    alert(JSON.stringify(signed, null, 2))
     if (!signed) {
       return false
     }
