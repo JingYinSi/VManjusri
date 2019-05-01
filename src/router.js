@@ -25,18 +25,14 @@ async function __beforeEach (to, from, next) {
     router.replace({
       name: 'lamps'
     })
-  } else if (!to.meta.noAuth && !store.getters.user) {
-    const code = parseQueryParam(currentUrl, 'code')
-    if (!code || code.length === 0) {
+  } else if (!to.meta.noAuth && !store.getters.token) {
+    const token = parseQueryParam(currentUrl, 'token')
+    if (!token || token.length === 0) {
       const restUrl = store.getters.entry.wechatSignin
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
       return false
     }
-    const signed = await store.dispatch('wechatUser', code)
-    alert(JSON.stringify(signed, null, 2))
-    if (!signed) {
-      return false
-    }
+    store.commit('token', token)
   }
   next()
 }
