@@ -19,19 +19,18 @@ function parseQueryParam (url, name) {
 }
 
 async function __beforeEach (to, from, next) {
-  const currentUrl = window.location.href
   if (to.name === 'home') {
     router.replace({
       name: 'lamps'
     })
   } else if (!to.meta.noAuth && !store.getters.token) {
-    const code = parseQueryParam(currentUrl, 'code')
+    const code = parseQueryParam(window.location.href, 'code')
     if (!code || code.length === 0) {
       const restUrl = store.getters.entry.wechatCode
       redirectToWechatAuth2(`${restUrl}?url=${to.fullPath}`)
       return false
     }
-    await store.dispatch('wechatUser', code)
+    await store.dispatch('wechatAuth', code)
   }
   next()
 }

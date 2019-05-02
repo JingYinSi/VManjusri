@@ -29,7 +29,7 @@ const actions = {
     ctx.commit('onlines', onlines)
   },
 
-  async wechatUser (ctx, code) {
+  async wechatAuth (ctx, code) {
     let entry = ctx.getters.entry
     const url = `${entry.wechatAuth}?code=${code}`
     try {
